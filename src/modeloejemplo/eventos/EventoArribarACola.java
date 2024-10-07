@@ -24,15 +24,14 @@ public class EventoArribarACola extends Evento {
 		EventoArribarACola nuevoEvento = new EventoArribarACola(libreria.tiempoEntreArribosSolicitudes());	
 		eventos.agregar(nuevoEvento);
 		
-		//Procesar este arribo, para lo cual es necesario generar la solicitud que acaba de arribar.
-		Solicitud solicitudParaAgregar = new Solicitud();
-		
+		Solicitud solicitudParaAgregar = new Solicitud(libreria.tipoServicio());
+
 		if(modeloActual.estaServidorOcupado()) {
 			modeloActual.encolarSolicitud(solicitudParaAgregar);
 		}
 		else {
 			modeloActual.atenderSolicitud(solicitudParaAgregar);
-			int duracionDelProcesamiento = libreria.tiempoDeProcesamiento();
+			double duracionDelProcesamiento = libreria.tiempoDeServicio(solicitudParaAgregar);
 			EventoTerminaProcesamiento nuevoEventoAdicional = new EventoTerminaProcesamiento(duracionDelProcesamiento);	
 			eventos.agregar(nuevoEventoAdicional);
 		}

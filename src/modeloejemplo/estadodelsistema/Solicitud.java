@@ -4,10 +4,11 @@ package modeloejemplo.estadodelsistema;
 
 public class Solicitud {
 	
-	String tipo = new String();
+	String tipo;
 
-	public Solicitud() {
+	public Solicitud(String s) {
 		super();
+		this.tipo = s;
 	}
 
 	public String getTipo(){

@@ -7,7 +7,7 @@ import des.EstadoDelSistema;
 public class ModeloDelEjemplo extends EstadoDelSistema {
 	
 	private ColaDeSolicitudes cola;
-	private Servidor servidor1, servidor2;
+	private Servidor servidor1;
 	
 	public void inicializar() {
 		cola = new ColaDeSolicitudes();
