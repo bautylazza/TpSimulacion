@@ -70,7 +70,7 @@ public class ProgramaPrincipal {
 		//TODO Aca se debe programar según el fin sea por tiempo o cantidad.
 		
 		//Ejemplo por tiempo
-		int tiempoDeSimulacion = 20;
+		int tiempoDeSimulacion = 30;
 		if(reloj.getValor() >= tiempoDeSimulacion) return true;
 		return false;
 		

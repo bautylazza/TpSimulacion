@@ -19,8 +19,7 @@ public class EventoTerminaProcesamiento extends Evento {
 	public void rutinaDeEvento(EstadoDelSistema modelo, ContadoresEstadisticos contadores, ListaDeEventos eventos,
 			LibreriaDeRutinasEjemplo libreria) {
 		
-		ContadoresEstadisticosEjemplo contadoresEjemplo = (ContadoresEstadisticosEjemplo) contadores;
-		contadoresEjemplo.actualizarCantProcesadas();
+
 		
 		ModeloDelEjemplo modeloActual = (ModeloDelEjemplo) modelo;
 		
@@ -28,11 +27,14 @@ public class EventoTerminaProcesamiento extends Evento {
 			Solicitud solicitudAProcesar = modeloActual.obtenerSolicitudPrioritaria();
 			modeloActual.atenderSolicitud(solicitudAProcesar);
 			double duracionDelProcesamiento = libreria.tiempoDeServicio(solicitudAProcesar);
-			EventoTerminaProcesamiento nuevoEvento = new EventoTerminaProcesamiento(duracionDelProcesamiento);	
+			
+			EventoTerminaProcesamiento nuevoEvento = new EventoTerminaProcesamiento(duracionDelProcesamiento);
+			ContadoresEstadisticosEjemplo contadoresEjemplo = (ContadoresEstadisticosEjemplo) contadores;
+			contadoresEjemplo.actualizarCantProcesadas(solicitudAProcesar);	
+			System.out.println(" LLEGA HAY SOLICITUD EN ESPERA");
 			eventos.agregar(nuevoEvento);	
 		}
 		else {
-
 			modeloActual.actualizarServidorDisponible();
 		}
 

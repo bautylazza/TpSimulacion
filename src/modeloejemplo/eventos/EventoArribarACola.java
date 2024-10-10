@@ -4,6 +4,7 @@ import des.ContadoresEstadisticos;
 import des.EstadoDelSistema;
 import des.Evento;
 import des.ListaDeEventos;
+import modeloejemplo.componentespropios.ContadoresEstadisticosEjemplo;
 import modeloejemplo.componentespropios.LibreriaDeRutinasEjemplo;
 import modeloejemplo.estadodelsistema.ModeloDelEjemplo;
 import modeloejemplo.estadodelsistema.Solicitud;
@@ -32,7 +33,11 @@ public class EventoArribarACola extends Evento {
 		else {
 			modeloActual.atenderSolicitud(solicitudParaAgregar);
 			double duracionDelProcesamiento = libreria.tiempoDeServicio(solicitudParaAgregar);
-			EventoTerminaProcesamiento nuevoEventoAdicional = new EventoTerminaProcesamiento(duracionDelProcesamiento);	
+			EventoTerminaProcesamiento nuevoEventoAdicional = new EventoTerminaProcesamiento(duracionDelProcesamiento);
+			
+			ContadoresEstadisticosEjemplo contadoresEjemplo = (ContadoresEstadisticosEjemplo) contadores;
+			contadoresEjemplo.actualizarCantProcesadas(solicitudParaAgregar);
+			System.out.println("SIN HACER COLA");	
 			eventos.agregar(nuevoEventoAdicional);
 		}
 	}
